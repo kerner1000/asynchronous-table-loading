@@ -1,0 +1,32 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.github.asynchronous-table-loading</groupId>
+    <artifactId>asynchronous-table-loading</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>Asynchronous Table Loading</name>
+    <description>A TableView that updates it's Cell content asynchronously in the background.</description>
+    <developers>
+        <developer>
+            <id>kerner</id>
+            <name>Alexander Kerner</name>
+            <email>alexkerner1000@gmail.com</email>
+            <roles>
+                <role>Project Manager</role>
+                <role>Architect</role>
+            </roles>
+        </developer>
+    </developers>
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.6.0</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
