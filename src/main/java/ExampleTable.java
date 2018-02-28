@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 public class ExampleTable extends Application {
 
-    private static final int NUM_ELEMENTS = 100;
+    private static final int NUM_ELEMENTS = 10000;
 
     private final TableView<ExampleBean> table = new TableView<>();
 
