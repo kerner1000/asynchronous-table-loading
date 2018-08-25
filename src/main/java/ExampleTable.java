@@ -3,9 +3,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -13,7 +11,7 @@ import javafx.stage.Stage;
 
 public class ExampleTable extends Application {
 
-    private static final int NUM_ELEMENTS = 100;
+    private static final int NUM_ELEMENTS = 5000;
 
     private final TableView<ExampleBean> table = new TableView<>();
 
@@ -58,13 +56,16 @@ public class ExampleTable extends Application {
         // table.setMaxWidth(Double.POSITIVE_INFINITY);
         table.getColumns().addAll(c1, c2, c3);
 
+        final ContextMenu cm = new ContextMenu();
+        cm.getItems().add(new MenuItem("bu"));
+        table.setContextMenu(cm);
+
         final VBox vbox = new VBox();
         vbox.setSpacing(5);
         VBox.setVgrow(sp, Priority.ALWAYS);
         vbox.getChildren().addAll(sp);
 
         scene.setRoot(vbox);
-
 
         stage.setScene(scene);
         stage.show();

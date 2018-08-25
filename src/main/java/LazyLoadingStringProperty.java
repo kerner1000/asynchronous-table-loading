@@ -8,9 +8,7 @@
  *
  *******************************************************************************/
 
-import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 
 import java.util.concurrent.ExecutorService;
@@ -47,7 +45,7 @@ public abstract class LazyLoadingStringProperty extends SimpleStringProperty {
     @Override
     public String getValue() {
         if (!loaded) {
-            Platform.runLater(() -> startLoadingService());
+            startLoadingService();
             return loadingString;
         }
         return super.getValue();
@@ -55,27 +53,24 @@ public abstract class LazyLoadingStringProperty extends SimpleStringProperty {
 
     protected void startLoadingService() {
 
-        final Service<String> s = new Service<String>() {
 
-            @Override
-            protected Task<String> createTask() {
-                return LazyLoadingStringProperty.this.createTask();
-            }
-        };
+        final Task<String> s = LazyLoadingStringProperty.this.createTask();
 
-        s.setExecutor(exe);
+        exe.submit(s);
+
 
         s.setOnFailed(e -> {
-            setValue(s.getException().getLocalizedMessage());
             setLoaded(true);
+            setValue(s.getException().getLocalizedMessage());
+
         });
 
         s.setOnSucceeded(e -> {
-            setValue(s.getValue());
             setLoaded(true);
+            setValue(s.getValue());
+
         });
-        s.start();
-        // System.err.println("Started");
+
     }
 
     protected abstract Task<String> createTask();
